@@ -1,12 +1,18 @@
 #include <Wire.h>
 #include "radSens1v2.h"
 
+#define THREE_PIN 4
 
 ClimateGuard_RadSens1v2 radSens(RS_DEFAULT_I2C_ADDRESS); /*Constructor of the class ClimateGuard_RadSens1v2,
                                                            sets the address parameter of I2C sensor.
                                                            Default address: 0x66.*/
 void setup() 
-{
+{ 
+pinMode(THREE_PIN, OUTPUT);
+     analogWrite(THREE_PIN, 170);
+
+
+
   Serial.begin(115200);  
 
   radSens.radSens_init(); /*Initialization function and sensor connection. 
