@@ -1,10 +1,10 @@
 from urllib.request import urlopen
 import json
-with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+with urlopen('/map/moscow.geojson') as response:
     counties = json.load(response)
 
 import pandas as pd
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
+df = pd.read_csv("map_data.csv",
                    dtype={"fips": str})
 
 import plotly.express as px
