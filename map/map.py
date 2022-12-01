@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 import json
-with urlopen('/map/moscow.geojson') as response:
+with urlopen('https://github.com/codeforgermany/click_that_hood/blob/main/public/data/moscow.geojson') as response:
     counties = json.load(response)
 
 import pandas as pd
