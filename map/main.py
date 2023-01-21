@@ -14,13 +14,13 @@ m = folium.Map(location=[data[0][0], data[0][1]], zoom_start=16)
 
 for dot in data:
     color = "purple";
-    if dot[2] <= 10:
+    if dot[2] <= 6:
         color="green";
-    elif dot[2] >= 10 and dot[2] <= 20:
+    elif dot[2] >= 7 and dot[2] <= 10:
         color="yellow";
-    elif dot[2] >= 20:
+    elif dot[2] >= 10:
         color="red";
     # elif dot[2]
-    folium.Circle(radius=100, location=[dot[0], dot[1]], color=color, popup=dot[2], fill=True).add_to(m)
+    folium.Circle(radius=50, location=[dot[0], dot[1]], color=color, popup=dot[2], fill=True).add_to(m)
 
 m.save('name.html')
