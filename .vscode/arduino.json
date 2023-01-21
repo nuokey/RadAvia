@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "programmer": "arduino:arduinoisp",
+    "port": "COM3",
+    "sketch": "SD Module\\SD Module.ino"
+}
