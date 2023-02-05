@@ -28,33 +28,32 @@ border1 = min_rad + amplitude * 1 / 3
 border2 = min_rad + amplitude * 2 / 3
 
 for dot in data:
-    a = int((dot[2] - min_rad) / amplitude * 15)
-    if a == 15:
-        a = "f"
-    if a == 14:
-        a = "e"
-    if a == 13:
-        a = "d"
-    if a == 12:
-        a = "c"
-    if a == 11:
-        a = "b"
-    if a == 10:
-        a = "a"
+    # a = int((dot[2] - min_rad) / amplitude * 15)
+    # if a == 15:
+    #     a = "f"
+    # if a == 14:
+    #     a = "e"
+    # if a == 13:
+    #     a = "d"
+    # if a == 12:
+    #     a = "c"
+    # if a == 11:
+    #     a = "b"
+    # if a == 10:
+    #     a = "a"
     
 
-    print(a)
+    # print(a)
 
-    color = f"#ff{a}{a}{a}f";
+    # color = f"#ff{a}{a}{a}f";
 
     
-    # if dot[2] <= border1:
-    #     color="green";
-    # elif dot[2] >= border1 and dot[2] <= border2:
-    #     color="yellow";
-    # elif dot[2] >= border2:
-    #     color="red";
-    # elif dot[2]
+    if dot[2] <= border1:
+        color="green";
+    elif dot[2] >= border1 and dot[2] <= border2:
+        color="yellow";
+    elif dot[2] >= border2:
+        color="red";
     folium.Circle(radius=5, location=[dot[0], dot[1]], color=color, popup=dot[2], fill=True).add_to(m)
 
 m.save('name.html')

@@ -27,6 +27,10 @@ void setup(){
 
   pinMode(THREE_PIN, OUTPUT);
   analogWrite(THREE_PIN, 170);
+
+  pinMode(5, OUTPUT);
+  
+
   // RadSens start
   radSens.radSens_init();
   
@@ -49,11 +53,19 @@ void setup(){
     file = SD.open("/test.txt", FILE_WRITE);
     Serial.println(file.print("Hello again"));
     file.close();
-
+    digitalWrite(5, HIGH);
+    delay(1000);
+    digitalWrite(5, LOW);
     
   }
   else {
     Serial.println("SD-card was not read");
+    while(true) {
+      digitalWrite(5, HIGH);
+      delay(100);
+      digitalWrite(5, LOW);
+      delay(100);
+    }
   }
 }
 
@@ -70,7 +82,12 @@ void loop() {
   if (millis() > 5000 && gps.charsProcessed() < 10)
   {
     Serial.println("No GPS detected");
-    while(true);
+    while(true) {
+      digitalWrite(5, HIGH);
+      delay(500);
+      digitalWrite(5, LOW);
+      delay(500);
+    }
   }
 
   
@@ -104,8 +121,18 @@ void displayInfo()
   file = SD.open("/data.txt", FILE_WRITE);
   radSens.get();
 
-  if (gps.location.isValid())
-  {
+  
+
+  if (gps.location.isValid() && radSens.IntensyDyanmic != 0)
+  { 
+    digitalWrite(5, HIGH);
+    delay(300);
+    digitalWrite(5, LOW);
+    delay(300);
+    digitalWrite(5, HIGH);
+    delay(300);
+    digitalWrite(5, LOW);
+    delay(1000);
     Serial.print(gps.location.lat(), 6);
     Serial.print(" ");
     Serial.print(gps.location.lng(), 6);
@@ -120,17 +147,26 @@ void displayInfo()
 
     file.print("\r\n");
   }
+  else if (radSens.IntensyDyanmic != 0) {
+    digitalWrite(5, HIGH);
+    delay(1000);
+    digitalWrite(5, LOW);
+    delay(1000);
+
+    Serial.println("Location: Not Available");
+  }
   else
   {
     Serial.println("Location: Not Available");
+    delay(1000);
   }
-  
+
   Serial.print(" ");
     Serial.print(radSens.IntensyDyanmic);
     Serial.print(" ");
     Serial.print(radSens.IntensyStatic);
 
-  delay(1000);
+  
   Serial.print("\r\n");
   file.close();
 }
