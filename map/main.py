@@ -16,8 +16,7 @@ for i in range(len(data)):
     if data[i][2] < min_rad:
         min_rad = data[i][2]
 
-print("Минимальное значение радиационного фона", min_rad)
-print("Максимальное значение радиационного фона", max_rad)
+
 
 m = folium.Map(location=[data[0][0], data[0][1]], zoom_start=16)
 
@@ -48,12 +47,19 @@ for dot in data:
     # color = f"#ff{a}{a}{a}f";
 
     
-    if dot[2] <= border1:
-        color="green";
-    elif dot[2] >= border1 and dot[2] <= border2:
-        color="yellow";
-    elif dot[2] >= border2:
-        color="red";
+    # if dot[2] <= border1:
+    #     color="green";
+    # elif dot[2] >= border1 and dot[2] <= border2:
+    #     color="yellow";
+    # elif dot[2] >= border2:
+    #     color="red";
+
+    color = "green"
     folium.Circle(radius=5, location=[dot[0], dot[1]], color=color, popup=dot[2], fill=True).add_to(m)
 
 m.save('name.html')
+
+print("Минимальное значение радиационного фона", min_rad)
+print("Первая граница: ", border1)
+print("Вторая граница: ", border2)
+print("Максимальное значение радиационного фона", max_rad)
